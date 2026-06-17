@@ -69,21 +69,4 @@ router.post(
   }
 );
 
-// POST /api/auth/seed-admin — run once to create first admin (remove in production!)
-router.post('/seed-admin', async (req, res) => {
-  try {
-    const exists = await User.findOne({ role: 'admin' });
-    if (exists) return res.status(400).json({ success: false, message: 'Admin already exists' });
-    const admin = await User.create({
-      name: 'Admin',
-      email: req.body.email || 'admin@moldcraft.com',
-      password: req.body.password || 'admin123',
-      role: 'admin',
-    });
-    res.status(201).json({ success: true, message: 'Admin created', email: admin.email });
-  } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
-  }
-});
-
 module.exports = router;
