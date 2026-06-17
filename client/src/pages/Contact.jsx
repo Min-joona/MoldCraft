@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 import { HiMail, HiPhone, HiLocationMarker, HiCheckCircle } from 'react-icons/hi';
-import { FaFacebook, FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaTiktok, FaWhatsapp, FaLinkedinIn, FaXTwitter, FaYoutube } from 'react-icons/fa6';
 import { useState } from 'react';
 import { contactApi } from '../api';
 
@@ -96,13 +96,13 @@ export default function Contact() {
             <div className="card p-8 space-y-6">
               <h2 className="font-display font-bold uppercase tracking-wide text-white">Get In Touch</h2>
               <div className="space-y-4">
-                <a href="mailto:hello@moldcraft.com" className="flex items-start gap-4 group">
+                <a href="mailto:kimsabu36@gmail.com" className="flex items-start gap-4 group">
                   <div className="w-10 h-10 bg-brand-500/10 border border-brand-500/20 rounded-sm flex items-center justify-center shrink-0 group-hover:bg-brand-500/20 transition-colors">
                     <HiMail className="text-brand-500" size={16} />
                   </div>
                   <div>
                     <p className="text-xs text-gray-500 uppercase tracking-wider font-body mb-0.5">Email</p>
-                    <p className="text-sm text-white font-body group-hover:text-brand-400 transition-colors">hello@moldcraft.com</p>
+                    <p className="text-sm text-white font-body group-hover:text-brand-400 transition-colors">kimsabu36@gmail.com</p>
                   </div>
                 </a>
                 <a href="tel:+251 93 368 0059" className="flex items-start gap-4 group">
@@ -114,15 +114,15 @@ export default function Contact() {
                     <p className="text-sm text-white font-body group-hover:text-brand-400 transition-colors">+251 93 368 0059</p>
                   </div>
                 </a>
-                <div className="flex items-start gap-4">
+                <a href="https://maps.app.goo.gl/a8B6TCtZV6Lg7UgT8" target="_blank" rel="noreferrer" className="flex items-start gap-4 group">
                   <div className="w-10 h-10 bg-brand-500/10 border border-brand-500/20 rounded-sm flex items-center justify-center shrink-0">
                     <HiLocationMarker className="text-brand-500" size={16} />
                   </div>
                   <div>
                     <p className="text-xs text-gray-500 uppercase tracking-wider font-body mb-0.5">Location</p>
-                    <p className="text-sm text-white font-body">Addis Ababa, Ethiopia.</p>
+                    <p className="text-sm text-white font-body group-hover:text-brand-400 transition-colors">Addis Ababa, Ethiopia</p>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
 
@@ -142,8 +142,16 @@ export default function Contact() {
             {/* Social */}
             <div className="card p-8">
               <h3 className="label mb-4">Follow Us</h3>
-              <div className="flex gap-3">
-                {[{ icon: FaFacebook, label: 'Facebook', href: '#' }, { icon: FaInstagram, label: 'Instagram', href: '#' }, { icon: FaTiktok, label: 'TikTok', href: '#' }, { icon: FaWhatsapp, label: 'WhatsApp', href: 'https://wa.me/631234567890' }].map(({ icon: Icon, label, href }) => (
+              <div className="flex gap-3 flex-wrap">
+                {[
+                  { icon: FaFacebook, label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61590619546219' },
+                  { icon: FaInstagram, label: 'Instagram', href: 'https://www.instagram.com/moldcraft32' },
+                  { icon: FaTiktok, label: 'TikTok', href: 'https://tiktok.com/@moldcraft32' },
+                  { icon: FaWhatsapp, label: 'WhatsApp', href: 'https://wa.me/251933680059' },
+                  { icon: FaLinkedinIn, label: 'LinkedIn', href: 'https://linkedin.com/company/moldcraft32' },
+                  { icon: FaXTwitter, label: 'X (Twitter)', href: 'https://x.com/moldcraft32' },
+                  { icon: FaYoutube, label: 'YouTube', href: 'https://youtube.com/@moldcraft32' },
+                ].map(({ icon: Icon, label, href }) => (
                   <a key={label} href={href} target="_blank" rel="noreferrer" title={label} className="w-10 h-10 border border-white/10 rounded-sm flex items-center justify-center text-gray-400 hover:border-brand-500 hover:text-brand-500 transition-all">
                     <Icon size={16} />
                   </a>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FaFacebook, FaInstagram, FaTiktok } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaTiktok, FaLinkedinIn, FaXTwitter, FaYoutube } from 'react-icons/fa6';
 import { HiMail, HiPhone, HiLocationMarker } from 'react-icons/hi';
 
 const footerLinks = {
@@ -40,19 +40,26 @@ export default function Footer() {
               Custom mini plastic injection molding for prototypes, small batches, and production runs. Quality parts, fast turnaround.
             </p>
             <div className="flex flex-col gap-2 text-sm text-gray-400">
-              <a href="mailto:hello@moldcraft.com" className="flex items-center gap-2 hover:text-brand-500 transition-colors">
-                <HiMail size={14} /> hello@moldcraft.com
+              <a href="mailto:kimsabu36@gmail.com" className="flex items-center gap-2 hover:text-brand-500 transition-colors">
+                <HiMail size={14} /> kimsabu36@gmail.com
               </a>
               <a href="tel:+251 93 368 0059" className="flex items-center gap-2 hover:text-brand-500 transition-colors">
                 <HiPhone size={14} /> +251 93 368 0059
               </a>
-              <span className="flex items-center gap-2">
+              <a href="https://maps.app.goo.gl/a8B6TCtZV6Lg7UgT8" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-brand-500 transition-colors">
                 <HiLocationMarker size={14} /> Addis Ababa, Ethiopia
-              </span>
+              </a>
             </div>
-            <div className="flex gap-3 mt-6">
-              {[FaFacebook, FaInstagram, FaTiktok].map((Icon, i) => (
-                <a key={i} href="#" className="w-9 h-9 border border-white/10 rounded-sm flex items-center justify-center text-gray-400 hover:border-brand-500 hover:text-brand-500 transition-all">
+            <div className="flex gap-2 mt-6 flex-wrap">
+              {[
+                { icon: FaFacebook, href: 'https://www.facebook.com/profile.php?id=61590619546219' },
+                { icon: FaInstagram, href: 'https://www.instagram.com/moldcraft32' },
+                { icon: FaTiktok, href: 'https://tiktok.com/@moldcraft32' },
+                { icon: FaLinkedinIn, href: 'https://linkedin.com/company/moldcraft32' },
+                { icon: FaXTwitter, href: 'https://x.com/moldcraft32' },
+                { icon: FaYoutube, href: 'https://youtube.com/@moldcraft32' },
+              ].map(({ icon: Icon, href }, i) => (
+                <a key={i} href={href} target="_blank" rel="noreferrer" className="w-9 h-9 border border-white/10 rounded-sm flex items-center justify-center text-gray-400 hover:border-brand-500 hover:text-brand-500 transition-all">
                   <Icon size={14} />
                 </a>
               ))}
