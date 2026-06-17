@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
+import { usePageTracking } from './hooks/useAnalytics';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -16,6 +17,7 @@ import AdminDashboard from './pages/admin/Dashboard';
 import AdminQuotes from './pages/admin/Quotes';
 import AdminGallery from './pages/admin/GalleryManager';
 import AdminBlog from './pages/admin/BlogManager';
+import ContentManager from './pages/admin/ContentManager';
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -23,13 +25,16 @@ const ProtectedRoute = ({ children }) => {
   return user ? children : <Navigate to="/admin/login" replace />;
 };
 
-const PublicLayout = ({ children }) => (
-  <div className="min-h-screen flex flex-col noise">
-    <Navbar />
-    <main className="flex-1">{children}</main>
-    <Footer />
-  </div>
-);
+const PublicLayout = ({ children }) => {
+  usePageTracking();
+  return (
+    <div className="min-h-screen flex flex-col noise">
+      <Navbar />
+      <main className="flex-1">{children}</main>
+      <Footer />
+    </div>
+  );
+};
 
 export default function App() {
   return (
@@ -51,6 +56,7 @@ export default function App() {
       <Route path="/admin/quotes" element={<ProtectedRoute><AdminQuotes /></ProtectedRoute>} />
       <Route path="/admin/gallery" element={<ProtectedRoute><AdminGallery /></ProtectedRoute>} />
       <Route path="/admin/blog" element={<ProtectedRoute><AdminBlog /></ProtectedRoute>} />
+      <Route path="/admin/content" element={<ProtectedRoute><ContentManager /></ProtectedRoute>} />
 
       {/* 404 */}
       <Route path="*" element={<PublicLayout><div className="flex items-center justify-center min-h-[60vh] flex-col gap-4"><span className="font-display text-8xl font-bold text-brand-500">404</span><p className="text-gray-400">Page not found</p><a href="/" className="btn-primary">Go Home</a></div></PublicLayout>} />

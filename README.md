@@ -80,20 +80,9 @@ This starts:
 
 ---
 
-## 🔐 Create Your First Admin Account
+## 🔐 Admin Access
 
-**Once the server is running**, call this once to create the admin user:
-
-```bash
-curl -X POST http://localhost:5000/api/auth/seed-admin \
-  -H "Content-Type: application/json" \
-  -d '{"email":"admin@moldcraft.com","password":"yourpassword"}'
-```
-
-Then log in at: http://localhost:5173/admin/login
-
-> ⚠️ **Remove the `/seed-admin` route before deploying to production!**
-> In `server/src/routes/auth.js`, delete the `router.post('/seed-admin', ...)` block.
+Log in at `/admin/login` using the admin credentials created during initial setup.
 
 ---
 
@@ -163,20 +152,22 @@ Then log in at: http://localhost:5173/admin/login
 - Start command: `npm start`
 - Health check: [https://moldcraft-api-production.up.railway.app/api/health](https://moldcraft-api-production.up.railway.app/api/health)
 
-### Environment Variables (Railway)
-| Variable | Value |
-|----------|-------|
+### Environment Variables
+Required variables for deployment — set these in your hosting provider's dashboard:
+
+| Variable | Description |
+|----------|-------------|
 | `NODE_ENV` | `production` |
 | `MONGODB_URI` | MongoDB Atlas connection string |
-| `JWT_SECRET` | (set in production) |
-| `CLOUDINARY_CLOUD_NAME` | `dxvvpresa` |
-| `CLOUDINARY_API_KEY` | (set in production) |
-| `CLOUDINARY_API_SECRET` | (set in production) |
-| `EMAIL_USER` | `kimsabu36@gmail.com` |
-| `EMAIL_PASS` | (Gmail App Password) |
-| `EMAIL_FROM` | `MoldCraft <kimsabu36@gmail.com>` |
-| `ADMIN_EMAIL` | `kimsabu36@gmail.com` |
-| `CLIENT_URL` | `https://mold-craft-kim.vercel.app` |
+| `JWT_SECRET` | Random string for JWT signing |
+| `CLOUDINARY_CLOUD_NAME` | From Cloudinary dashboard |
+| `CLOUDINARY_API_KEY` | From Cloudinary dashboard |
+| `CLOUDINARY_API_SECRET` | From Cloudinary dashboard |
+| `EMAIL_USER` | Gmail address for sending emails |
+| `EMAIL_PASS` | Gmail App Password |
+| `EMAIL_FROM` | Sender name + email |
+| `ADMIN_EMAIL` | Notification recipient email |
+| `CLIENT_URL` | Frontend URL (for CORS) |
 
 ---
 
@@ -192,7 +183,7 @@ Then log in at: http://localhost:5173/admin/login
 - [ ] Add Google Maps embed in `Contact.jsx`
 - [ ] Replace placeholder stats in `Home.jsx`
 - [x] Set up Vercel project (`mold-craft-kim.vercel.app`)
-- [x] Google Analytics configured (G-HKGPGBGBKP)
+- [x] Google Analytics configured
 - [x] SEO meta tags, Open Graph, JSON-LD
 - [x] Sitemap & robots.txt
 - [ ] Replace placeholder OG image (`public/og-image.png`)

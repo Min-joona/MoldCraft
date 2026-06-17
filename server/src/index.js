@@ -11,6 +11,9 @@ const galleryRoutes = require('./routes/gallery');
 const blogRoutes = require('./routes/blog');
 const { materialsRouter: materialsRoutes } = require('./routes/materials');
 const contactRoutes = require('./routes/contact');
+const analyticsRoutes = require('./routes/analytics');
+const contentRoutes = require('./routes/content');
+const dashboardRoutes = require('./routes/dashboard');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -36,6 +39,9 @@ app.use('/api/gallery', galleryRoutes);
 app.use('/api/blog', blogRoutes);
 app.use('/api/materials', materialsRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/analytics', analyticsRoutes);
+app.use('/api/content', contentRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

@@ -48,3 +48,19 @@ export const materialsApi = {
 export const contactApi = {
   send: (data) => api.post('/contact', data),
 };
+
+export const analyticsApi = {
+  trackView: (data) => api.post('/analytics/track', data),
+  trackEvent: (data) => api.post('/analytics/event', data),
+  getStats: () => api.get('/analytics/stats').then(r => r.data),
+};
+
+export const dashboardApi = {
+  getStats: () => api.get('/dashboard').then(r => r.data),
+};
+
+export const contentApi = {
+  getAll: () => api.get('/content').then(r => r.data),
+  getOne: (key) => api.get(`/content/${key}`).then(r => r.data),
+  update: (key, data) => api.patch(`/content/${key}`, data).then(r => r.data),
+};
