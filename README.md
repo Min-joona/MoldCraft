@@ -1,6 +1,13 @@
 # MoldCraft — Full Stack MERN Website
 
+[![Vercel](https://img.shields.io/badge/Frontend-Vercel-000?logo=vercel)](https://client-eta-eosin-1mz316cwze.vercel.app)
+[![Railway](https://img.shields.io/badge/Backend-Railway-0B0D0E?logo=railway)](https://moldcraft-api-production.up.railway.app)
+[![MongoDB](https://img.shields.io/badge/Database-MongoDB_Atlas-47A248?logo=mongodb)](https://www.mongodb.com/atlas)
+[![Status](https://img.shields.io/badge/Status-Live-success)]()
+
 Custom mini plastic injection molding business website built with MongoDB, Express, React, and Node.js.
+
+**Live Demo:** [https://client-eta-eosin-1mz316cwze.vercel.app](https://client-eta-eosin-1mz316cwze.vercel.app)
 
 ---
 
@@ -141,25 +148,35 @@ Then log in at: http://localhost:5173/admin/login
 
 ---
 
-## 🚀 Deployment
+## 🚀 Deployment (Live)
 
-### Frontend → Vercel
-1. Push to GitHub
-2. Connect repo at https://vercel.com
-3. Set root to `client/`
-4. Set build command: `npm run build`
-5. Set output: `dist`
+### Frontend — Vercel
+**URL:** [https://client-eta-eosin-1mz316cwze.vercel.app](https://client-eta-eosin-1mz316cwze.vercel.app)
+- Root directory: `client/`
+- Build command: `npm run build`
+- Output directory: `dist`
+- Env var: `VITE_API_URL` = `https://moldcraft-api-production.up.railway.app`
 
-### Backend → Railway (recommended, free tier)
-1. Go to https://railway.app
-2. New Project → Deploy from GitHub
-3. Set root to `server/`
-4. Add environment variables from your `.env`
-5. Set start command: `npm start`
+### Backend — Railway
+**URL:** [https://moldcraft-api-production.up.railway.app](https://moldcraft-api-production.up.railway.app)
+- Root directory: `server/`
+- Start command: `npm start`
+- Health check: [https://moldcraft-api-production.up.railway.app/api/health](https://moldcraft-api-production.up.railway.app/api/health)
 
-### Update CORS
-After deploying backend, update `CLIENT_URL` in Railway env vars to your Vercel URL.
-After deploying frontend, update the Vite proxy in `client/vite.config.js` with your Railway backend URL (for production, use direct API calls via `VITE_API_URL` env variable).
+### Environment Variables (Railway)
+| Variable | Value |
+|----------|-------|
+| `NODE_ENV` | `production` |
+| `MONGODB_URI` | MongoDB Atlas connection string |
+| `JWT_SECRET` | (set in production) |
+| `CLOUDINARY_CLOUD_NAME` | `dxvvpresa` |
+| `CLOUDINARY_API_KEY` | (set in production) |
+| `CLOUDINARY_API_SECRET` | (set in production) |
+| `EMAIL_USER` | `kimsabu36@gmail.com` |
+| `EMAIL_PASS` | (Gmail App Password) |
+| `EMAIL_FROM` | `MoldCraft <kimsabu36@gmail.com>` |
+| `ADMIN_EMAIL` | `kimsabu36@gmail.com` |
+| `CLIENT_URL` | `https://client-eta-eosin-1mz316cwze.vercel.app` |
 
 ---
 
@@ -201,7 +218,7 @@ After deploying frontend, update the Vite proxy in `client/vite.config.js` with 
 
 ## 👥 Team
 
-Built by [Your Names Here] — MoldCraft founding team.
+Built by [Min-joona](https://github.com/Min-joona) — MoldCraft founding team.
 
 ---
 
