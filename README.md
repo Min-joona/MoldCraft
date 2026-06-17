@@ -1,13 +1,13 @@
 # MoldCraft — Full Stack MERN Website
 
-[![Vercel](https://img.shields.io/badge/Frontend-Vercel-000?logo=vercel)](https://client-eta-eosin-1mz316cwze.vercel.app)
+[![Vercel](https://img.shields.io/badge/Frontend-Vercel-000?logo=vercel)](https://mold-craft-kim.vercel.app)
 [![Railway](https://img.shields.io/badge/Backend-Railway-0B0D0E?logo=railway)](https://moldcraft-api-production.up.railway.app)
 [![MongoDB](https://img.shields.io/badge/Database-MongoDB_Atlas-47A248?logo=mongodb)](https://www.mongodb.com/atlas)
 [![Status](https://img.shields.io/badge/Status-Live-success)]()
 
 Custom mini plastic injection molding business website built with MongoDB, Express, React, and Node.js.
 
-**Live Demo:** [https://client-eta-eosin-1mz316cwze.vercel.app](https://client-eta-eosin-1mz316cwze.vercel.app)
+**Live Demo:** [https://mold-craft-kim.vercel.app](https://mold-craft-kim.vercel.app)
 
 ---
 
@@ -151,7 +151,7 @@ Then log in at: http://localhost:5173/admin/login
 ## 🚀 Deployment (Live)
 
 ### Frontend — Vercel
-**URL:** [https://client-eta-eosin-1mz316cwze.vercel.app](https://client-eta-eosin-1mz316cwze.vercel.app)
+**URL:** [https://mold-craft-kim.vercel.app](https://mold-craft-kim.vercel.app)
 - Root directory: `client/`
 - Build command: `npm run build`
 - Output directory: `dist`
@@ -176,7 +176,7 @@ Then log in at: http://localhost:5173/admin/login
 | `EMAIL_PASS` | (Gmail App Password) |
 | `EMAIL_FROM` | `MoldCraft <kimsabu36@gmail.com>` |
 | `ADMIN_EMAIL` | `kimsabu36@gmail.com` |
-| `CLIENT_URL` | `https://client-eta-eosin-1mz316cwze.vercel.app` |
+| `CLIENT_URL` | `https://mold-craft-kim.vercel.app` |
 
 ---
 
@@ -191,7 +191,11 @@ Then log in at: http://localhost:5173/admin/login
 - [ ] Update business hours in `Contact.jsx`
 - [ ] Add Google Maps embed in `Contact.jsx`
 - [ ] Replace placeholder stats in `Home.jsx`
-- [ ] Set up custom domain on Vercel
+- [x] Set up Vercel project (`mold-craft-kim.vercel.app`)
+- [x] Google Analytics configured (G-HKGPGBGBKP)
+- [x] SEO meta tags, Open Graph, JSON-LD
+- [x] Sitemap & robots.txt
+- [ ] Replace placeholder OG image (`public/og-image.png`)
 
 ---
 

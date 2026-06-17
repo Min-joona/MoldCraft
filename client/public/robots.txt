@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mold-craft-kim.vercel.app/sitemap.xml
