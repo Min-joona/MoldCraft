@@ -13,7 +13,7 @@ const generateToken = (id) =>
 router.post(
   '/login',
   [
-    body('email').isEmail().withMessage('Valid email required'),
+    body('email').notEmpty().withMessage('Username or email required'),
     body('password').notEmpty().withMessage('Password required'),
   ],
   async (req, res) => {
@@ -22,7 +22,11 @@ router.post(
 
     try {
       const { email, password } = req.body;
-      const user = await User.findOne({ email }).select('+password');
+      const identifier = email.toLowerCase().trim();
+      const isEmail = identifier.includes('@');
+      const user = isEmail
+        ? await User.findOne({ email: identifier }).select('+password')
+        : await User.findOne({ username: identifier }).select('+password');
       if (!user || !(await user.comparePassword(password))) {
         return res.status(401).json({ success: false, message: 'Invalid email or password' });
       }

@@ -40,8 +40,8 @@ export default function AdminLogin() {
 
         <form onSubmit={handleSubmit(onSubmit)} className="card p-8 space-y-5">
           <div>
-            <label className="label">Email</label>
-            <input {...register('email', { required: 'Required' })} type="email" className="input" placeholder="admin@moldcraft.com" autoFocus />
+            <label className="label">Username or Email</label>
+            <input {...register('email', { required: 'Required' })} type="text" className="input" placeholder="kimsabu32 or admin@moldcraft.com" autoFocus />
             {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>}
           </div>
           <div>
