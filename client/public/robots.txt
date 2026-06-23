@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mold-craft-kim.vercel.app/sitemap.xml
+Sitemap: https://moldcraft-addis.vercel.app/sitemap.xml
