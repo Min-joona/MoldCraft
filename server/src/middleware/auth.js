@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
+const ROLE_HIERARCHY = { super_admin: 4, admin: 3, editor: 2, developer: 1 };
+
 const protect = async (req, res, next) => {
   try {
     let token;
@@ -21,11 +23,15 @@ const protect = async (req, res, next) => {
   }
 };
 
-const adminOnly = (req, res, next) => {
-  if (req.user?.role !== 'admin') {
-    return res.status(403).json({ success: false, message: 'Admin access required.' });
+const requireRole = (minLevel) => (req, res, next) => {
+  const userLevel = ROLE_HIERARCHY[req.user?.role] || 0;
+  if (userLevel < minLevel) {
+    return res.status(403).json({ success: false, message: 'Insufficient permissions.' });
   }
   next();
 };
 
-module.exports = { protect, adminOnly };
+const adminOnly = requireRole(ROLE_HIERARCHY.admin);
+const superAdminOnly = requireRole(ROLE_HIERARCHY.super_admin);
+
+module.exports = { protect, adminOnly, superAdminOnly, requireRole, ROLE_HIERARCHY };

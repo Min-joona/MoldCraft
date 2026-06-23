@@ -64,3 +64,22 @@ export const contentApi = {
   getOne: (key) => api.get(`/content/${key}`).then(r => r.data),
   update: (key, data) => api.patch(`/content/${key}`, data).then(r => r.data),
 };
+
+export const heroApi = {
+  getAll: () => api.get('/hero').then(r => r.data),
+  getAllAdmin: () => api.get('/hero/all').then(r => r.data),
+  create: (data) => api.post('/hero', data).then(r => r.data),
+  update: (id, data) => api.patch(`/hero/${id}`, data).then(r => r.data),
+  delete: (id) => api.delete(`/hero/${id}`).then(r => r.data),
+};
+
+export const authApi = {
+  login: (data) => api.post('/auth/login', data).then(r => r.data),
+  me: () => api.get('/auth/me').then(r => r.data),
+  updatePassword: (data) => api.patch('/auth/password', data).then(r => r.data),
+  updateProfile: (data) => api.patch('/auth/profile', data).then(r => r.data),
+  getUsers: () => api.get('/auth/users').then(r => r.data),
+  createUser: (data) => api.post('/auth/users', data).then(r => r.data),
+  updateUser: (id, data) => api.patch(`/auth/users/${id}`, data).then(r => r.data),
+  deleteUser: (id) => api.delete(`/auth/users/${id}`).then(r => r.data),
+};

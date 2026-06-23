@@ -29,13 +29,20 @@ export const AuthProvider = ({ children }) => {
     return user;
   };
 
+  const refreshUser = async () => {
+    try {
+      const res = await api.get('/auth/me');
+      setUser(res.data.user);
+    } catch { /* ignore */ }
+  };
+
   const logout = () => {
     localStorage.removeItem('moldcraft_token');
     delete api.defaults.headers.common['Authorization'];
     setUser(null);
   };
 
-  return <AuthContext.Provider value={{ user, loading, login, logout }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ user, loading, login, logout, refreshUser }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {

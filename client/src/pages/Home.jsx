@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { HiArrowRight, HiCube, HiLightningBolt, HiColorSwatch, HiChip } from 'react-icons/hi';
+import HeroCarousel from '../components/HeroCarousel';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 30 },
@@ -41,59 +43,55 @@ const SERVICES = [
 const MATERIALS = ['PP', 'ABS', 'HDPE', 'Nylon', 'TPU', 'PC'];
 
 export default function Home() {
+  const { data: slides } = useQuery({
+    queryKey: ['hero'],
+    queryFn: () => import('../api').then(m => m.heroApi.getAll()).then(r => r.data),
+    staleTime: 60000,
+  });
+
   return (
     <div className="overflow-x-hidden">
-      {/* ─── Hero ─── */}
-      <section className="relative min-h-screen flex items-center pt-20">
-        {/* Background grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(249,115,22,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(249,115,22,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
-        {/* Glow */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-brand-500/5 rounded-full blur-[120px] pointer-events-none" />
-
-        <div className="page-wrapper relative z-10 py-24">
-          <div className="max-w-4xl">
-            <motion.div {...fadeUp(0.1)}>
-              <span className="section-tag">Mini Injection Molding Studio</span>
-            </motion.div>
-
-            <motion.h1 {...fadeUp(0.2)} className="font-display text-6xl md:text-8xl lg:text-[7rem] font-extrabold uppercase leading-[0.9] tracking-tight text-white mb-8">
-              Turning
-              <span className="block text-brand-500">Plastic</span>
-              Into Precision
-            </motion.h1>
-
-            <motion.p {...fadeUp(0.35)} className="font-body text-lg text-gray-400 max-w-xl leading-relaxed mb-10">
-              Custom injection-molded parts with no massive minimum orders. We serve prototypers, small manufacturers, hobbyists, and startups who need real plastic parts — fast.
-            </motion.p>
-
-            <motion.div {...fadeUp(0.45)} className="flex flex-wrap gap-4">
-              <Link to="/quote" className="btn-primary flex items-center gap-2 text-base">
-                Get a Free Quote <HiArrowRight />
-              </Link>
-              <Link to="/gallery" className="btn-secondary flex items-center gap-2 text-base">
-                See Our Work
-              </Link>
-            </motion.div>
-
-            {/* Material pills */}
-            <motion.div {...fadeUp(0.55)} className="flex flex-wrap gap-2 mt-12">
-              <span className="text-xs text-gray-600 uppercase tracking-widest self-center mr-2 font-body">Materials:</span>
-              {MATERIALS.map((m) => (
-                <span key={m} className="px-3 py-1 text-xs font-mono border border-white/10 text-gray-400 rounded-sm hover:border-brand-500/50 hover:text-brand-400 transition-colors cursor-default">
-                  {m}
-                </span>
-              ))}
-            </motion.div>
+      {/* ─── Hero Carousel ─── */}
+      {slides?.length > 0 ? (
+        <HeroCarousel slides={slides} />
+      ) : (
+        <section className="relative min-h-screen flex items-center pt-20">
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(249,115,22,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(249,115,22,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-brand-500/5 rounded-full blur-[120px] pointer-events-none" />
+          <div className="page-wrapper relative z-10 py-24">
+            <div className="max-w-4xl">
+              <motion.div {...fadeUp(0.1)}>
+                <span className="section-tag">Mini Injection Molding Studio</span>
+              </motion.div>
+              <motion.h1 {...fadeUp(0.2)} className="font-display text-6xl md:text-8xl lg:text-[7rem] font-extrabold uppercase leading-[0.9] tracking-tight text-white mb-8">
+                Turning<span className="block text-brand-500">Plastic</span>Into Precision
+              </motion.h1>
+              <motion.p {...fadeUp(0.35)} className="font-body text-lg text-gray-400 max-w-xl leading-relaxed mb-10">
+                Custom injection-molded parts with no massive minimum orders. We serve prototypers, small manufacturers, hobbyists, and startups who need real plastic parts — fast.
+              </motion.p>
+              <motion.div {...fadeUp(0.45)} className="flex flex-wrap gap-4">
+                <Link to="/quote" className="btn-primary flex items-center gap-2 text-base">
+                  Get a Free Quote <HiArrowRight />
+                </Link>
+                <Link to="/gallery" className="btn-secondary flex items-center gap-2 text-base">
+                  See Our Work
+                </Link>
+              </motion.div>
+              <motion.div {...fadeUp(0.55)} className="flex flex-wrap gap-2 mt-12">
+                <span className="text-xs text-gray-600 uppercase tracking-widest self-center mr-2 font-body">Materials:</span>
+                {MATERIALS.map((m) => (
+                  <span key={m} className="px-3 py-1 text-xs font-mono border border-white/10 text-gray-400 rounded-sm hover:border-brand-500/50 hover:text-brand-400 transition-colors cursor-default">{m}</span>
+                ))}
+              </motion.div>
+            </div>
           </div>
-        </div>
-
-        {/* Decorative vertical text */}
-        <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-4">
-          <div className="w-px h-24 bg-gradient-to-b from-transparent to-brand-500/50" />
-          <span className="font-display text-xs font-bold uppercase tracking-[0.5em] text-gray-600 rotate-90 whitespace-nowrap">Injection Molding</span>
-          <div className="w-px h-24 bg-gradient-to-t from-transparent to-brand-500/50" />
-        </div>
-      </section>
+          <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-4">
+            <div className="w-px h-24 bg-gradient-to-b from-transparent to-brand-500/50" />
+            <span className="font-display text-xs font-bold uppercase tracking-[0.5em] text-gray-600 rotate-90 whitespace-nowrap">Injection Molding</span>
+            <div className="w-px h-24 bg-gradient-to-t from-transparent to-brand-500/50" />
+          </div>
+        </section>
+      )}
 
       {/* ─── Stats ─── */}
       <section className="border-y border-white/5 bg-dark-700/30">

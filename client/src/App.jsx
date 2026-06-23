@@ -18,6 +18,9 @@ import AdminQuotes from './pages/admin/Quotes';
 import AdminGallery from './pages/admin/GalleryManager';
 import AdminBlog from './pages/admin/BlogManager';
 import ContentManager from './pages/admin/ContentManager';
+import UsersManager from './pages/admin/UsersManager';
+import Profile from './pages/admin/Profile';
+import HeroCarouselAdmin from './pages/admin/HeroCarousel';
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -57,6 +60,9 @@ export default function App() {
       <Route path="/admin/gallery" element={<ProtectedRoute><AdminGallery /></ProtectedRoute>} />
       <Route path="/admin/blog" element={<ProtectedRoute><AdminBlog /></ProtectedRoute>} />
       <Route path="/admin/content" element={<ProtectedRoute><ContentManager /></ProtectedRoute>} />
+      <Route path="/admin/users" element={<ProtectedRoute><UsersManager /></ProtectedRoute>} />
+      <Route path="/admin/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+      <Route path="/admin/hero" element={<ProtectedRoute><HeroCarouselAdmin /></ProtectedRoute>} />
 
       {/* 404 */}
       <Route path="*" element={<PublicLayout><div className="flex items-center justify-center min-h-[60vh] flex-col gap-4"><span className="font-display text-8xl font-bold text-brand-500">404</span><p className="text-gray-400">Page not found</p><a href="/" className="btn-primary">Go Home</a></div></PublicLayout>} />

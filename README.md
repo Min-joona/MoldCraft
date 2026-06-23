@@ -186,13 +186,7 @@ Required variables for deployment — set these in your hosting provider's dashb
 - [x] Google Analytics configured
 - [x] SEO meta tags, Open Graph, JSON-LD
 - [x] Sitemap & robots.txt
-- [ ] Replace placeholder OG image (`public/og-image.png`)
-
----
-
-## 🧰 Tech Stack
-
-| Layer | Technology |
+- [ ] Replace placeholder OG image (`public/og-image.png`)| Layer | Technology |
 |-------|-----------|
 | Frontend framework | React 18 + Vite |
 | Styling | Tailwind CSS |

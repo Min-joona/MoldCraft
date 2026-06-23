@@ -7,7 +7,7 @@ import { trackEvent } from '../../hooks/useAnalytics';
 import {
   HiClipboardList, HiPhotograph, HiDocumentText, HiLogout, HiClock, HiCheckCircle,
   HiExclamation, HiEye, HiGlobe, HiChartBar, HiTrendingUp, HiCog, HiMail,
-  HiPhone, HiTag, HiRefresh, HiCalendar, HiUserGroup, HiChartPie,
+  HiPhone, HiTag, HiRefresh, HiCalendar, HiUserGroup, HiChartPie, HiShieldCheck,
 } from 'react-icons/hi';
 
 const STATUS_COLORS = {
@@ -16,13 +16,18 @@ const STATUS_COLORS = {
   rejected: 'text-red-400 bg-red-400/10', completed: 'text-gray-400 bg-gray-400/10',
 };
 
+const ROLE_HIERARCHY = { super_admin: 4, admin: 3, editor: 2, developer: 1 };
+
 const NAV_ITEMS = [
   { to: '/admin', icon: HiChartBar, label: 'Dashboard', exact: true },
   { to: '/admin/quotes', icon: HiClipboardList, label: 'Quotes', badge: true },
   { to: '/admin/gallery', icon: HiPhotograph, label: 'Gallery' },
   { to: '/admin/blog', icon: HiDocumentText, label: 'Blog' },
   { to: '/admin/content', icon: HiCog, label: 'Content' },
+  { to: '/admin/hero', icon: HiPhotograph, label: 'Hero Slides' },
 ];
+
+
 
 function StatCard({ icon: Icon, label, value, color, trend, onClick }) {
   return (
@@ -129,9 +134,19 @@ export default function AdminDashboard() {
         </nav>
         <div className="absolute bottom-0 left-0 right-0 p-3 border-t border-white/5">
           <div className="px-3 py-2 text-xs text-gray-500 font-body truncate">Hi, {user?.name}</div>
-          <button onClick={handleLogout} className="flex items-center gap-2 px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors w-full rounded-sm hover:bg-white/5">
-            <HiLogout size={14} /> Logout
-          </button>
+          <div className="space-y-0.5">
+            {user?.role === 'super_admin' && (
+              <Link to="/admin/users" className="flex items-center gap-2 px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors w-full rounded-sm hover:bg-white/5">
+                <HiShieldCheck size={14} /> Users
+              </Link>
+            )}
+            <Link to="/admin/profile" className="flex items-center gap-2 px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors w-full rounded-sm hover:bg-white/5">
+              <HiUserGroup size={14} /> Profile
+            </Link>
+            <button onClick={handleLogout} className="flex items-center gap-2 px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors w-full rounded-sm hover:bg-white/5">
+              <HiLogout size={14} /> Logout
+            </button>
+          </div>
         </div>
       </aside>
 
